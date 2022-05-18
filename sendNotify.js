@@ -2,8 +2,9 @@
  * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-08-19 16:12:40
  * @Last Modified by: liuhaoxing
- * @Last Modified time: 2022-05-18 16:42:56
+ * @Last Modified time: 2022-05-18 16:49:26
  */
+const axios = require('axios');
 const querystring = require('querystring');
 const $ = new Env();
 // =======================================微信server酱通知设置区域===========================================
@@ -161,43 +162,17 @@ function serverNotify(text, desp = '结果', timeout = 2100) {
         if (SCKEY) {
             //微信server酱推送通知一个\n不会换行，需要两个\n才能换行，故做此替换
             // desp = desp.replace(/[\n\r]/g, '\n\n');
-            const options = {
-                url: `https://sctapi.ftqq.com/${SCKEY}.send`,
-                body: `title=${text}&desp=${desp}`,
+            axios({
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-            };
-            setTimeout(() => {
-                $.post(options, (err, resp, data) => {
-                    try {
-                        if (err) {
-                            console.log('发送通知调用API失败！！\n');
-                            console.log(err);
-                        } else {
-                            data = JSON.parse(data);
-                            if (data.errno === 0) {
-                                console.log('server酱发送通知消息成功\n');
-                            } else if (data.errno === 1024) {
-                                // 一分钟内发送相同的内容会触发
-                                console.log(
-                                    `server酱发送通知消息异常: ${data.errmsg}\n`
-                                );
-                            } else {
-                                console.log(
-                                    `server酱发送通知消息异常\n${JSON.stringify(
-                                        data
-                                    )}`
-                                );
-                            }
-                        }
-                    } catch (e) {
-                        $.logErr(e, resp);
-                    } finally {
-                        resolve(data);
-                    }
-                });
-            }, timeout);
+                data: qs.stringify({
+                    title: text,
+                    desp: desp,
+                }),
+                url: 'https://sctapi.ftqq.com/${SCKEY}.send',
+            }).then(() => {});
         } else {
             console.log('您未提供server酱的SCKEY，取消微信推送消息通知\n');
             resolve();

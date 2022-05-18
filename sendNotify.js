@@ -2,7 +2,7 @@
  * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-08-19 16:12:40
  * @Last Modified by: liuhaoxing
- * @Last Modified time: 2022-05-18 16:20:08
+ * @Last Modified time: 2022-05-18 16:32:37
  */
 const querystring = require('querystring');
 const $ = new Env();
@@ -136,26 +136,29 @@ if (process.env.PUSH_PLUS_USER) {
 //==========================云端环境变量的判断与接收=========================
 
 async function sendNotify(text, desp, params = {}) {
-    //提供7种通知
-    await Promise.all([
-        serverNotify(text, desp), //微信server酱
-        pushPlusNotify(text, desp), //pushplus(推送加)
-    ]);
-    //由于上述两种微信通知需点击进去才能查看到详情，故text(标题内容)携带了账号序号以及昵称信息，方便不点击也可知道是哪个京东哪个活动
-    text = text.match(/.*?(?=\s?-)/g) ? text.match(/.*?(?=\s?-)/g)[0] : text;
-    await Promise.all([
-        BarkNotify(text, desp, params), //iOS Bark APP
-        tgBotNotify(text, desp), //telegram 机器人
-        ddBotNotify(text, desp), //钉钉机器人
-        qywxBotNotify(text, desp), //企业微信机器人
-        qywxamNotify(text, desp), //企业微信应用消息推送
-        iGotNotify(text, desp, params), //iGot
-        CoolPush(text, desp), //QQ酷推
-    ]);
+    serverNotify(text, desp); //微信server酱
+
+    // //提供7种通知
+    // await Promise.all([
+    //     serverNotify(text, desp), //微信server酱
+    //     pushPlusNotify(text, desp), //pushplus(推送加)
+    // ]);
+    // //由于上述两种微信通知需点击进去才能查看到详情，故text(标题内容)携带了账号序号以及昵称信息，方便不点击也可知道是哪个京东哪个活动
+    // text = text.match(/.*?(?=\s?-)/g) ? text.match(/.*?(?=\s?-)/g)[0] : text;
+    // await Promise.all([
+    //     BarkNotify(text, desp, params), //iOS Bark APP
+    //     tgBotNotify(text, desp), //telegram 机器人
+    //     ddBotNotify(text, desp), //钉钉机器人
+    //     qywxBotNotify(text, desp), //企业微信机器人
+    //     qywxamNotify(text, desp), //企业微信应用消息推送
+    //     iGotNotify(text, desp, params), //iGot
+    //     CoolPush(text, desp), //QQ酷推
+    // ]);
 }
 
 function serverNotify(text, desp, timeout = 2100) {
     return new Promise((resolve) => {
+        console.log(SCKEY);
         if (SCKEY) {
             //微信server酱推送通知一个\n不会换行，需要两个\n才能换行，故做此替换
             desp = desp.replace(/[\n\r]/g, '\n\n');

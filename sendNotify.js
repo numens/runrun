@@ -2,9 +2,10 @@
  * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-08-19 16:12:40
  * @Last Modified by: liuhaoxing
- * @Last Modified time: 2022-05-18 16:50:12
+ * @Last Modified time: 2022-05-18 16:52:26
  */
 const axios = require('axios');
+const qs = require('qs');
 const querystring = require('querystring');
 // =======================================微信server酱通知设置区域===========================================
 //此处填你申请的SCKEY.

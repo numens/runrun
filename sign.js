@@ -94,7 +94,7 @@ var params = `${DateNow}###{
     "wz" : ""
 }`;
 
-console.log(params);
+// console.log(params);
 var paramStr = Encrypt(params);
 // document.write(paramStr);
 

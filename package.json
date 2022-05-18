@@ -1,0 +1,16 @@
+{
+  "name": "get-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sign.js",
+  "scripts": {
+    "start": "node sign.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "qs": "^6.10.3"
+  }
+}

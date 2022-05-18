@@ -2,14 +2,14 @@
  * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-08-19 16:12:40
  * @Last Modified by: liuhaoxing
- * @Last Modified time: 2022-05-18 16:32:37
+ * @Last Modified time: 2022-05-18 16:38:11
  */
 const querystring = require('querystring');
 const $ = new Env();
 // =======================================微信server酱通知设置区域===========================================
 //此处填你申请的SCKEY.
 //注：此处设置github action用户填写到Settings-Secrets里面(Name输入PUSH_KEY)
-let SCKEY = '';
+let SCKEY = 'SCT148606TOjokq1XZbB175N9Kh0wnOKZt';
 
 // =======================================QQ酷推通知设置区域===========================================
 //此处填你申请的SKEY(具体详见文档 https://cp.xuthus.cc/)
@@ -65,10 +65,9 @@ let PUSH_PLUS_TOKEN = '';
 let PUSH_PLUS_USER = '';
 
 //==========================云端环境变量的判断与接收=========================
-console.log(process.env);
-if (process.env.PUSH_KEY) {
-    SCKEY = process.env.PUSH_KEY;
-}
+// if (process.env.PUSH_KEY) {
+//     SCKEY = process.env.PUSH_KEY;
+// }
 
 if (process.env.QQ_SKEY) {
     QQ_SKEY = process.env.QQ_SKEY;

@@ -2,7 +2,7 @@
  * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-08-19 16:12:40
  * @Last Modified by: liuhaoxing
- * @Last Modified time: 2022-05-18 16:52:26
+ * @Last Modified time: 2022-05-18 16:55:12
  */
 const axios = require('axios');
 const qs = require('qs');
@@ -171,7 +171,7 @@ function serverNotify(text, desp = '结果', timeout = 2100) {
                     title: text,
                     desp: desp,
                 }),
-                url: 'https://sctapi.ftqq.com/${SCKEY}.send',
+                url: `https://sctapi.ftqq.com/${SCKEY}.send`,
             }).then(() => {});
         } else {
             console.log('您未提供server酱的SCKEY，取消微信推送消息通知\n');

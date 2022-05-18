@@ -194,6 +194,5 @@ function sign() {
             console.log(e);
         });
 }
-setTimeout(() => {
-    sign();
-}, Math.random() * 60 * 1000);
+
+sign();

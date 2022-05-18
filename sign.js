@@ -188,7 +188,7 @@ function sign() {
             var result = Decrypt(resultBase64);
             var rtnmsg = JSON.parse(result).rtnmsg;
             console.log(rtnmsg);
-            notify.sendNotify(encodeURI(rtnmsg));
+            notify.sendNotify(rtnmsg);
         })
         .catch((e) => {
             console.log(e);

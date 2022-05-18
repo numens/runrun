@@ -10,7 +10,7 @@ on:
         default: 'false'
 
   schedule:
-    - cron: '35 17 * * *'
+    - cron: '35 9 * * *' # +8小时为北京时间
   watch:
     types: started  
     

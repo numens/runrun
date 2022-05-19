@@ -94,7 +94,7 @@ var params = `${DateNow}###{
     "wz" : ""
 }`;
 
-// console.log(params);
+console.log(params);
 var paramStr = Encrypt(params);
 // document.write(paramStr);
 
@@ -184,7 +184,7 @@ function sign() {
             var resultStr = JSON.stringify(res.data);
             resultStr = resultStr.replace(/\n/g, '').replace(/\\/g, '');
             var resultBase64 = JSON.parse(resultStr).result;
-            console.log(resultBase64);
+            // console.log(resultBase64);
             var result = Decrypt(resultBase64);
             var rtnmsg = JSON.parse(result).rtnmsg;
             console.log(rtnmsg);

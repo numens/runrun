@@ -30,12 +30,19 @@ jobs:
           node-version: '14.x'
 
       - name: 安装依赖
-        run: npm install  
+        run: npm install    
 
+      # - name: 清理
+      #   run: node null.js
+
+      # - name: 提交清理
+      #   run: |
+      #     git add .
+      #     git commit -m "clearFile"    
       - name: 运行
         run: npm start
-
-      env:
+        
+        env:
           imie: ${{ secrets.imie }}
           token: ${{ secrets.token }}
           psncode: ${{ secrets.psncode }}

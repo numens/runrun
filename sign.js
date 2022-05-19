@@ -3,7 +3,9 @@ const qs = require('qs');
 const CryptoJS = require('./crypto.js');
 const notify = require('./sendNotify');
 
-var dict = process.env.DICT;
+var imie = process.env.imie;
+var token = process.env.token;
+var psncode = process.env.psncode;
 
 const key = CryptoJS.enc.Utf8.parse('zywyzywyzywyzywy');
 const iv = CryptoJS.enc.Utf8.parse('0311031103110311');
@@ -83,11 +85,11 @@ var params = `${DateNow}###{
     "bzid" : "8a8349be76230fb6017627a7222a4cac",
     "bcid" : "",
     "sjdbs" : "${sjdbs}",
-    "imie" : "${dict['imie']}",
-    "token" : "${dict['token']}",
+    "imie" : "${imie}",
+    "token" : "${token}",
     "kqjd" : "${kqjd}",
     "kqsj" : "${kqsj}",
-    "psncode" : "${dict['psncode']}",
+    "psncode" : "${psncode}",
     "bztype" : "2",
     "content );" : "",
     "cqlx" : "0",

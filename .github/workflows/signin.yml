@@ -32,11 +32,11 @@ jobs:
       - name: 安装依赖
         run: npm install  
 
-      - name: create env file
-        run: |
-          touch .env
-          echo DICT=${{ secrets.DICT }} >> .env
-          echo PUSH_KEY=${{ secrets.PUSH_KEY }} >> .env
-
       - name: 运行
         run: npm start
+
+      env:
+          imie: ${{ secrets.imie }}
+          token: ${{ secrets.token }}
+          psncode: ${{ secrets.psncode }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}

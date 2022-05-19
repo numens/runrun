@@ -32,10 +32,6 @@ jobs:
       - name: 安装依赖
         run: npm install    
 
-      env:
-          DICT: ${{ secrets.DICT }}
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-
       # - name: 清理
       #   run: node null.js
 
@@ -45,3 +41,7 @@ jobs:
       #     git commit -m "clearFile"    
       - name: 运行
         run: npm start
+        
+        env:
+          DICT: ${{ secrets.DICT }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}

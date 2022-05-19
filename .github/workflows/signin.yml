@@ -30,18 +30,13 @@ jobs:
           node-version: '14.x'
 
       - name: 安装依赖
-        run: npm install 
+        run: npm install  
 
-      env:
-          DICT: ${{ secrets.DICT }}
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}   
+      - name: create env file
+        run: |
+          touch .env
+          echo DICT=${{ secrets.DICT }} >> .env
+          echo PUSH_KEY=${{ secrets.PUSH_KEY }} >> .env
 
-      # - name: 清理
-      #   run: node null.js
-
-      # - name: 提交清理
-      #   run: |
-      #     git add .
-      #     git commit -m "clearFile"    
       - name: 运行
         run: npm start

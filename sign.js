@@ -4,6 +4,7 @@ const CryptoJS = require('./crypto.js');
 const notify = require('./sendNotify');
 
 var dict = process.env.DICT;
+console.log(JSON.stringify(dict));
 
 const key = CryptoJS.enc.Utf8.parse('zywyzywyzywyzywy');
 const iv = CryptoJS.enc.Utf8.parse('0311031103110311');
@@ -195,4 +196,4 @@ function sign() {
         });
 }
 
-sign();
+// sign();

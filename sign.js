@@ -170,8 +170,31 @@ function Decrypt(word) {
     return decryptedStr.toString();
 }
 
-function sign() {
+async function isRestDayFn() {
+    try {
+        const { data } = await axios({
+            method: 'GET',
+            url: `http://api.tianapi.com/jiejiari/index?key=4c681cb1ff42d298da65cf6f6db1b0a4&date=${DayNow}`,
+        });
+        // console.log(data);
+        if (data.code === 200) {
+            const { newslist } = data;
+            const { isnotwork } = newslist[0]; // 0为工作日，1为休息日
+            return !!isnotwork
+        } else {
+            return false;
+        }
+    } catch (e) {
+        console.log('节假日接口', e);
+    }
+}
+
+async function sign() {
     const data = { param: paramStr };
+    const isRestDay = await isRestDayFn();
+    if (isRestDay) {
+        return notify.sendNotify('今天休息～');
+    }
     axios({
         method: 'POST',
         headers: {

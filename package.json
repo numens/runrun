@@ -4,7 +4,8 @@
   "description": "",
   "main": "sign.js",
   "scripts": {
-    "start": "node sign.js"
+    "start": "node sign.js",
+    "update": "node update.js"
   },
   "keywords": [],
   "author": "",
